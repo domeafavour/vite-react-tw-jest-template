@@ -24,21 +24,22 @@ Modify the `base` field in `vite.config.js` to your repo name. For example, if y
 // vite.config.js
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
   base: 'your repo name',
-  plugins: [react()],
+  plugins: [react(), tsconfigPaths()],
 });
 ```
 
-If your don't want it to be deployed while branch `main` is pushed, remove those lines in `.github/workflows/deploy.yml`:
+If your want it to be deployed while branch `main` is pushed, add those lines in `.github/workflows/deploy.yml`:
 
 ```diff
 # Simple workflow for deploying static content to GitHub Pages
 name: Deploy to GitHub Pages
 
 on:
--  # Runs on pushes targeting the default branch
--  push:
--    branches: ['main']
+   # Runs on pushes targeting the default branch
++  push:
++    branches: ['main']
 ```
